@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0",
+  "projectId": "{{PROJECT_ID}}",
+  "projectName": "{{PROJECT_NAME}}",
+  "generatedAt": "{{GENERATED_AT}}",
+  "lastModified": "{{LAST_MODIFIED}}",
+  "projectType": "{{PROJECT_TYPE}}",
+  "frontend": {
+    "framework": "react",
+    "language": "typescript",
+    "baseUrl": "http://localhost:5174",
+    "pages": {
+      "{{PageName}}.tsx": {
+        "path": "frontend/src/pages/{{PageName}}.tsx",
+        "route": "{{/route-path}}",
+        "purpose": "{{what this page does}}",
+        "apiCalls": [
+          {
+            "endpoint": "{{/api/endpoint}}",
+            "method": "{{GET|POST|PUT|DELETE}}",
+            "triggeredBy": "{{on mount | on form submit | on button click}}",
+            "requestPayload": {},
+            "responseUsed": []
+          }
+        ],
+        "dependsOnPages": [],
+        "lastModified": "{{TIMESTAMP}}"
+      },
+      "Home.tsx": {
+        "path": "src/pages/Home.tsx",
+        "route": "/",
+        "purpose": "The main calculator interface where users can input numbers and perform operations.",
+        "lastModified": "2026-02-25T20:59:26.554867+00:00"
+      }
+    }
+  },
+  "backend": {
+    "framework": "fastapi",
+    "language": "python",
+    "baseUrl": "http://localhost:8056",
+    "database": {
+      "type": "sqlite",
+      "file": "backend/database.db",
+      "ormFile": "backend/database.py"
+    },
+    "models": {
+      "{{ModelName}}": {
+        "file": "backend/models/{{model_name}}.py",
+        "tableName": "{{table_name}}",
+        "fields": {
+          "id": {
+            "type": "Integer",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "{{fieldName}}": {
+            "type": "{{String|Integer|Boolean|Float|DateTime}}",
+            "nullable": false,
+            "unique": false,
+            "foreignKey": null
+          }
+        },
+        "relationships": {
+          "{{relatedModel}}": "{{one-to-many|many-to-one|many-to-many}}"
+        },
+        "usedInRoutes": []
+      }
+    },
+    "routes": {
+      "{{/api/endpoint}}": {
+        "file": "backend/routes/{{route_file}}.py",
+        "method": "{{GET|POST|PUT|DELETE}}",
+        "purpose": "{{what this route does}}",
+        "requestBody": {
+          "{{fieldName}}": "{{type}}"
+        },
+        "responseSchema": {
+          "{{fieldName}}": "{{type}}"
+        },
+        "usesModels": [],
+        "requiresAuth": false
+      }
+    }
+  },
+  "crossLinks": {
+    "{{/api/endpoint}}": {
+      "consumedBy": [],
+      "usesModels": []
+    }
+  }
+}
